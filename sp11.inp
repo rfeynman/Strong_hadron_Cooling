@@ -1,0 +1,523 @@
+run 1 1 112.6 -0.00188 0.4e-6 7
+!150ps in side the cathode; 0.4eV; then get 2.8e-3cm inside the cathode; 
+title
+Cornell DC gun test, R_cathode<6mm; 
+
+!@var 0 0 0.1 -1 0 DC gun ampl
+!@var 0 1 10 0 10000 1st solenoid: gun exit
+!@var 0 2 10 0 10000 563 entran solenoid
+!@var 0 3 5 -360 360 112MHz booster phase
+!@var 0 4 5 -360 360 563MHz 5th harmonic
+!@var 0 5 10 0 10000 3rd solenoid:
+!@var 0 6 2 0 10000 drift
+!@var 0 7 5 -360 360 591MHz linac phase
+!@var 0 8 2 0 10000 drift
+!@var 0 9 0.1 0 3.6 laser size
+!@var 0 10 10 0 10000 5th solenoid
+!@var 0 11 10 0 10000 2th solenoid: 112 entre
+!@var 0 12 5 -360 360 591MHz linac phase 2nd
+!@var 0 13 5 -360 360 591MHz linac phase 3rd
+!@var 0 14 5 -360 360 591MHz linac phase 4th
+!@var 1 18 5 -760 760 3rd harm
+!@var 1 19 1 5 100 3rd harm
+
+
+!@var 0 15 2 -150 -100 quad 1
+!@var 0 16 2  160 200 quad 2
+!@var 0 17 2  -120 -70 quad 3
+
+!@var 0 20 5 -360 720 591MHz linac phase 5th
+!@var 0 21 5 -360 720 591MHz linac phase 6th
+!@var 0 22 5 -360 720 591MHz linac phase 7th
+!@var 0 23 5 -360 720 591MHz linac phase 8th
+!xvar 0 24 5 -360 720 591MHz linac phase 9th
+!xvar 0 25 1 20  28 591MHz linac phase 10th
+
+
+
+
+
+
+!            #    l         r1                          r2                     a                        b
+!@subs 1 4 9
+input 9 19999 80.      5.3881696746e-01  50  2.0268
+!r=2.5 m;rms longitudinal 150ps=6.08deg; 100ps=4.0536
+!@subs 1 2 0
+poisson 15  -0.8  0  0  0 0 1 1
+dcgun_GHV.T7
+drift 0.0 5.0 1
+
+
+CATHODE     0, 1, 1, 0., 0.2
+
+drift 0.2 2 1
+drift 0.2 2 1
+drift 0.2 2 1
+drift 0.2 2 1
+drift 0.2 2 1
+drift 0.3 2 1
+drift 0.3 2 1
+drift 0.3 2 1
+drift 0.3 2 1
+drift 0.3 2 1
+drift 1.5 2 1
+drift 1 5 1 !
+drift 1 5 1 !
+drift 3 5 1 !
+drift 3 5 1 ! 
+drift 3 5 1 ! out of gun 15; 33.6 is the fist solenoid
+drift 3 5 1 !
+drift 3 5 1 !
+drift 3 5 1 !
+drift 3 5 1 !
+drift 3 5 1 !
+
+!========gun solenoid==========
+!@subs 1 4 1
+solenoid 10 10.0 1 2.4997946657e+02
+!===================
+!@subs 1 1 8
+drift 5 3.3 1
+drift 5 3.3 1
+drift 5 3.3 1
+drift 5 3.3 1
+drift 5 3.3 1
+!@subs 1 4 2
+solenoid 10 10.0 1 2.7970716208e+02
+
+!=================563=================================
+!@subs 1 4 4
+cell 70 5 1 132 0.7 3 1 -1 563
+cfield 3
+563.T7
+!============amplitude 0.1605 for compensate 112; 0.2 for thirp =======
+
+!========112 entry solenoid==========
+
+
+
+!@subs 1 4 11
+solenoid 10 10.0 1 4.6772671490e+02
+!@subs 1 1 6
+drift 5.0 3.3 1
+drift 5.0 3.3 1
+drift 5.0 3.3 1
+drift 5.0 3.3 1
+drift 5.0 3.3 1
+!xgoal envx 0 6
+!==================================== 
+
+!@subs 1 4 3
+cell 65 5 1 9.5961009949e+01 19.06 2 1 -1
+cfield 2
+booster.T7
+!=====booster phase 1.0517935282e+02
+
+!xgoal ener 10000 1 
+drift 5.0 3.3 1
+drift 5.0 3.3 1
+drift 5.0 3.3 1
+drift 5.0 3.3 1
+drift 5.0 3.3 1
+drift 5.0 3.3 1
+drift 5.0 3.3 1
+drift 5.0 3.3 1
+!out of the cavity
+drift 5.0 3.3 1
+drift 5.0 3.3 1
+!out of the cyromodule
+
+drift 15.0 3.3 1
+
+
+
+!xgoal ener 0 1
+!@subs 1 4 5
+solenoid 5.0 10.0 1 5.2790186451e+02
+
+
+drift 5.0 3.3 1
+drift 5.0 3.3 1
+
+
+!=========merge chirp=46.7=================
+!dipole: 10cm, drift,40,angle 5 deg
+bend 10 5 1 2.60 8 2 2
+drift 10 5 1
+drift 10 5 1
+drift 10 5 1
+drift 10 5 1
+
+
+bend 10 5 1 2.60 -8 -2 -2  
+bend 10 5 1 2.60 -8 -2 -2  
+
+drift 10 5 1
+drift 10 5 1
+drift 10 5 1
+drift 10 5 1
+drift 10 5 1
+drift 10 5 1
+drift 10 5 1
+drift 10 5 1
+drift 10 5 1
+
+
+bend 10 5 1 2.60 8 2 2  
+bend 10 5 1 2.60 8 2 2  
+
+drift 10 5 1
+drift 10 5 1
+drift 10 5 1
+drift 10 5 1
+
+bend 10 5 1 2.60 -8 -2 -2 
+
+!=========merge================
+drift 5.0 3.3 1
+drift 5.0 3.3 1
+drift 15.0 3.3 1
+drift 15.0 3.3 1
+
+!xgoal emit4d 0 1000
+!xgoal sigma_p 0 6
+!xgoal sigma_l 0 6
+!xgoal ener 10000 1
+
+
+!===============lINAC_start, peak phase 1.75367839223e+02;gap voltage 20 MV=========
+!@subs 1 4 7
+cell 194.816 5 1 1.75367839223e+02 28.2 4 1 -1 591.18
+cfield 4
+591LINAC.T7
+
+!amp=28.2
+!==============linac_done==================
+!xgoal ener 10000 1
+!xgoal emit4d 0 1000
+drift  5  3.3  1 
+drift  5  3.3  1 
+
+; ****** quad 01, QF length =10 cm, gradient x.x G/cm ****** 
+
+!@subs 1 4 15
+quad  10  3.3  1  -127 ;
+
+drift  12  3.3  1 ; 
+drift  12  3.3  1 ; 
+
+!@subs 1 4 16
+quad  10  3.3  1  182 ; element 272, total length = 832.61 cm
+
+; ****** drift 22, length = 25cm Q2-Q3 ****** 
+drift  12  3.3  1 ; 
+drift  12  3.3  1 ; 
+
+!@subs 1 4 17
+quad  10  3.3  1  -89 ; element 278, total length = 867.61 cm
+
+; ****** drift 23, length = 14.4cm until center view port ****** 
+drift  5  1.5  1 ; element 279, total length = 872.61 cm
+drift  5  1.5  1 ; element 280, total length = 877.61 cm
+
+
+
+!===============lINAC_2, ;gap voltage 20 MV; peak -1.0412424632e+02=========
+!@subs 1 4 12
+cell 194.816 5 1 -1.0412424632e+02 28.2 4 1 -1 591.18
+cfield 4
+591LINAC.T7
+
+!amp=28.2 to gap voltage 20 MV/m
+!==============linac_2 done==================
+
+!xgoal emit4d 0 1000
+!xgoal ener 10000 1
+
+drift  5  3.3  1 
+drift  5  3.3  1 
+
+; ****** quad 02, QF length =10 cm, gradient x.x G/cm ****** 
+quad  10  3.3  1  -0.1 ; 
+
+drift  12  3.3  1 ; 
+drift  12  3.3  1 ; 
+
+quad  10  3.3  1  0.2 ; element 272, total length = 832.61 cm
+
+; ****** drift 22, length = 25cm Q2-Q3 ****** 
+drift  12  3.3  1 ; 
+drift  12  3.3  1 ; 
+
+quad  10  3.3  1  -0.1 ; element 278, total length = 867.61 cm
+
+; ****** drift 23, length = 14.4cm until center view port ****** 
+drift  5  1.5  1 ; element 279, total length = 872.61 cm
+drift  5  1.5  1 ; element 280, total length = 877.61 cm
+
+
+!===============lINAC_3, ;gap voltage 20 MV; peak -2.2996624942e+01=========
+!@subs 1 4 13
+cell 194.816 5 1 -2.2996624942e+01 28.2 4 1 -1 591.18
+cfield 4
+591LINAC.T7
+
+!amp=28.2 to gap voltage 20.14 MV/m
+!==============linac_3 done==================
+!xgoal ener 10000 1
+drift  5  3.3  1 
+drift  5  3.3  1 
+
+; ****** quad 02, QF length =10 cm, gradient x.x G/cm ****** 
+quad  10  3.3  1  -0.1 ; 
+
+drift  12  3.3  1 ; 
+drift  12  3.3  1 ; 
+
+quad  10  3.3  1  23.5 ; element 272, total length = 832.61 cm
+
+; ****** drift 22, length = 25cm Q2-Q3 ****** 
+drift  12  3.3  1 ; 
+drift  12  3.3  1 ; 
+
+quad  10  3.3  1  -27 ; element 278, total length = 867.61 cm
+
+; ****** drift 23, length = 14.4cm until center view port ****** 
+drift  5  1.5  1 ; element 279, total length = 872.61 cm
+drift  5  1.5  1 ; element 280, total length = 877.61 cm
+
+!===============lINAC_4, ;gap voltage 20 MV;peak=5.8215186778e+01 =========
+!@subs 1 4 14
+cell 194.816 5 1 5.8215186778e+01 28.2 4 1 -1 591.18
+cfield 4
+591LINAC.T7
+
+!amp=28.2 to gap voltage 20 MV/m
+!==============linac_4 done==================
+!xgoal ener 10000 1
+drift  30  3.3  1 
+drift  30  3.3  1 
+drift 30 5 1
+
+!===============Linac 3xharmonic;amp 1.6~>9, vally phase 2.0804959783e+02; 12.45=1/9*20 MV/m===========
+!@subs 1 4 18 5 19
+cell 64.99 5 1 -2.0756279116e+02 2.5174633350e+01 5 1 -1 1773.531
+cfield 5
+1173.T7
+!=================================
+!xgoal ener 0 1
+drift  30  3.3  1 
+drift  20  3.3  1 
+drift  30  3.3  1 
+drift  20  3.3  1 
+
+!===============lINAC_5, ;gap voltage 20 MV; peak 1.3298934272e+02, put on offcrest + 23 deg=========
+!@subs 1 4 20
+cell 194.816 5 1 1.0492434220e+02 29.2 4 1 -1 591.18
+!cfield 4
+!591LINAC.T7
+
+!amp=28.2 to gap voltage 20.14 MV/m; 29.65 to gap voltage 21
+!==============linac_5 done==================
+
+
+; ****** quad 02, QF length =10 cm, gradient x.x G/cm ****** 
+quad  10  3.3  1  0 ; 
+
+drift  12  3.3  1 ; 
+drift  12  3.3  1 ; 
+
+quad  10  3.3  1  0 ; element 272, total length = 832.61 cm
+
+; ****** drift 22, length = 25cm Q2-Q3 ****** 
+drift  12  3.3  1 ; 
+drift  12  3.3  1 ; 
+
+quad  10  3.3  1  0 ; element 278, total length = 867.61 cm
+
+; ****** drift 23, length = 14.4cm until center view port ****** 
+drift  5  1.5  1 ; element 279, total length = 872.61 cm
+drift  5  1.5  1 ; element 280, total length = 877.61 cm
+
+
+!===============lINAC_6, ;gap voltage 20 MV; peak 2.1425891071e+02=========
+!@subs 1 4 21
+cell 194.816 5 1 2.5717334494e+02 29.2 4 1 -1 591.18
+!cfield 4
+!591LINAC.T7
+
+!amp=28.2 to gap voltage 20.14 MV/m
+!==============linac_6 done==================
+
+drift  5  3.3  1 
+!xgoal ener 10000 1
+
+drift  5  3.3  1 
+
+; ****** quad 02, QF length =10 cm, gradient x.x G/cm ****** 
+quad  10  3.3  1  -110 ; 
+
+drift  12  3.3  1 ; 
+drift  12  3.3  1 ; 
+
+quad  10  3.3  1  217 ; element 272, total length = 832.61 cm
+
+; ****** drift 22, length = 25cm Q2-Q3 ****** 
+drift  12  3.3  1 ; 
+drift  12  3.3  1 ; 
+
+quad  10  3.3  1  -108.2 ; element 278, total length = 867.61 cm
+
+; ****** drift 23, length = 14.4cm until center view port ****** 
+drift  5  1.5  1 ; element 279, total length = 872.61 cm
+drift  5  1.5  1 ; element 280, total length = 877.61 cm
+
+
+!===============lINAC_7, ;gap voltage 20 MV; peak  2.9552625929e+02=========
+!@subs 1 4 22
+cell 194.816 5 1 3.3844144956e+02 29.2 4 1 -1 591.18
+!cfield 4
+!591LINAC.T7
+
+!amp=28.2 to gap voltage 20.14 MV/m
+!==============linac_7 done==================
+
+drift  5  3.3  1 
+!xgoal ener 10000 1
+
+drift  5  3.3  1 
+
+; ****** quad 02, QF length =10 cm, gradient x.x G/cm ****** 
+quad  10  3.3  1  0 ; 
+
+drift  12  3.3  1 ; 
+drift  12  3.3  1 ; 
+
+quad  10  3.3  1  -2 ; element 272, total length = 832.61 cm
+
+; ****** drift 22, length = 25cm Q2-Q3 ****** 
+drift  12  3.3  1 ; 
+drift  12  3.3  1 ; 
+
+quad  10  3.3  1  2 ; element 278, total length = 867.61 cm
+
+; ****** drift 23, length = 14.4cm until center view port ****** 
+drift  5  1.5  1 ; element 279, total length = 872.61 cm
+drift  5  1.5  1 ; element 280, total length = 877.61 cm
+
+
+!===============lINAC_8, ;gap voltage 20 MV; peak 3.7677979648e+02=========
+!@subs 1 4 23
+cell 194.816 5 1 4.1970320278e+02 29.2 4 1 -1 591.18
+!cfield 4
+!591LINAC.T7
+
+!amp=28.2 to gap voltage 20.14 MV/m
+!==============linac_8 done==================
+
+drift  5  3.3  1 
+!xgoal ener 10000 1
+
+drift  5  3.3  1 
+
+; ****** quad 02, QF length =10 cm, gradient x.x G/cm ****** 
+quad  10  3.3  1  0 ; 
+
+drift  12  3.3  1 ; 
+drift  12  3.3  1 ; 
+
+quad  10  3.3  1  0 ; element 272, total length = 832.61 cm
+
+; ****** drift 22, length = 25cm Q2-Q3 ****** 
+drift  12  3.3  1 ; 
+drift  12  3.3  1 ; 
+
+quad  10  3.3  1  0 ; element 278, total length = 867.61 cm
+
+; ****** drift 23, length = 14.4cm until center view port ****** 
+drift  5  1.5  1 ; element 279, total length = 872.61 cm
+drift  5  1.5  1 ; element 280, total length = 877.61 cm
+
+drift  5  3.3  1 
+!xgoal ener 10000 1
+
+
+
+
+
+
+; ****** drift 23, length = 14.4cm until center view port ****** 
+drift  5  1.5  1 ; element 279, total length = 872.61 cm
+drift  5  1.5  1 ; element 280, total length = 877.61 cm
+
+
+
+
+drift  10  3.3  1 
+!xgoal ener 0 1
+!xgoal sigma_p 0 6
+drift  10  3.3  1 
+
+
+!xgoal emit4d 0 1000
+!@goal sigma_p 0 6
+!xgoal sigma_l 0 6
+!xgoal ener 10000 1
+
+!@subs 1 4 10
+
+drift 15.0 3.3 1
+
+
+
+zlimit 20
+zout 1000 20 0 3900 0 0 0 0
+
+output 5
+!output 1
+
+scheff 0.1109 0.6 5 18 150 0 0 7 1.5 0.0 0.0
+! with space charge 0.1109
+
+
+start 0    0.2 1650 1 50 ! 330 deg 1 deg=7.44mm after 112
+continue 0.2  2800 1 10 !330+560=890 degrees after merge
+save 0
+restart 0.2 1290 1 10 0 0 !890+258=1148 after 1 linac
+save 1
+restart 0.2 1980 1 10 0 1 !1148+396=1544 after 2 linac
+save 2
+restart 0.2 2010 1 10 0 2 ! 1544+402=1946 after 3 linac
+save 3
+restart 0.2 1960 1 10 0 3 ! 1946+392=2338 after 4 linac
+save 4
+restart 0.2 1025 1 10 0 4 ! 2338+205=2543 after 4 linac
+save 5
+restart 0.2 2445 1 10 0 5 ! 2543+489=3032 after doublet of chicane
+save 6
+restart 0.2 1485 1 10 0 6 ! 3032+297=3329 after 5 linac
+save 7
+restart 0.2 1975 1 10 0 7 !3329+395=3724 after 6 linac
+save 8
+restart 0.2 2020 1 10 0 8 ! 3724+404=4128 after 7 linac
+save 9
+restart 0.2 1975 1 10 0 9 ! 4128+395=4523 after 8 linac
+save 10
+restart 0.2 1945 1 10 0 10 ! 4523+389=4912 after 9 linac
+save 11
+restart 0.2 3000 1 10 0 11 !
+save 12
+restart 0.2 3000 1 10 0 12 !
+
+
+
+
+!continue 0.2   4210  1 10  !242 degrees totally, end of gun
+!continue 0.2 3500  1 10  !to be deleted later
+!scheff 1.3e-5 0.3 0.1 20 200 0 0 7 1.5 0.0 0.0
+!continue 0.4 8000 1 10
+!continue 0.5 10000 1 10
+!continue 1.0 991800 1 50 
+end
+
+
